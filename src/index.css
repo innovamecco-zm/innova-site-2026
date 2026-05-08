@@ -1,0 +1,24 @@
+/* src/index.css */
+@import "tailwindcss";
+
+@theme {
+  /* This replaces the 'extend' section of the old JS config */
+  --color-brand: #0a0a0a;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  
+  /* A vibrant, modern red */
+  --color-innova-red: #e11d48; 
+  /* A slightly darker version for the hover state */
+  --color-innova-red-dark: #be123c;
+  /* You can even define custom breakpoints or spacing here */
+  --breakpoint-3xl: 1920px;
+  
+
+}
+::selection {
+  background: #e11d48; /* Your Innova Red */
+  color: white;
+}
+html {
+  scroll-behavior: smooth;
+}
