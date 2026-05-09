@@ -1,28 +1,32 @@
 import { motion } from 'framer-motion';
+// 1. Import your actual images here
+import Member1 from '../assets/pic3.jpg'; // Adjust extensions (.jpg/.png) as needed
+import Member2 from '../assets/pic2.jpg';
+import Member3 from '../assets/pic1.jpg';
 
 export default function Team() {
   const team = [
     {
       name: "Daliso",
-      role: "Lead Developer",
-      bio: "Full-stack expert specializing in React and digital transformation.",
-      initials: "D",
+      role: "Operations Lead",
+      bio: "BSc Computer Systems Engineering",
+      photo: Member1,
       color: "bg-innova-red",
-      linkedin: "https://linkedin.com/in/daliso" // Add your actual links here
+      linkedin: "https://linkedin.com/in/daliso" 
     },
     {
-      name: "Sarah J.",
-      role: "UI/UX Designer",
-      bio: "Crafting intuitive digital experiences with a focus on simplicity.",
-      initials: "S",
+      name: "Memory",
+      role: "Marketing and Sales lead",
+      bio: "BSc information and networking",
+      photo: Member2,
       color: "bg-gray-900",
       linkedin: "#"
     },
     {
-      name: "Marcus K.",
-      role: "Systems Architect",
-      bio: "Ensuring scalable and secure infrastructure for African SMEs.",
-      initials: "M",
+      name: "Innocent",
+      role: "Lead Software Development",
+      bio: "BSc Software Engineering",
+      photo: Member3,
       color: "bg-gray-400",
       linkedin: "#"
     }
@@ -70,12 +74,18 @@ export default function Team() {
         >
           {team.map((member, i) => (
             <motion.div key={i} variants={itemVariants} className="group">
-              {/* Card Image Area */}
-              <div className={`aspect-[4/5] rounded-[2.5rem] mb-6 overflow-hidden ${member.color} flex items-center justify-center relative`}>
-                <span className="text-white text-8xl font-bold opacity-10 group-hover:scale-110 transition-transform duration-700">
-                  {member.initials}
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              
+              {/* 2. Photo Card Area */}
+              <div className="aspect-[4/5] rounded-[2.5rem] mb-6 overflow-hidden bg-gray-200 relative">
+                {/* The Actual Image */}
+                <img 
+                  src={member.photo} 
+                  alt={member.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                
+                {/* Modern Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60"></div>
               </div>
 
               {/* Member Details */}
