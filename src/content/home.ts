@@ -1,7 +1,7 @@
 export const HERO = {
   eyebrow: 'Meco Innova Ltd · Lusaka, Zambia',
-  headline: 'We make Zed CRM, and we run websites, email and IT for Zambian companies.',
-  sub: 'Meco Innova is a Lusaka software company with two lines of work: Zed CRM, our own CRM priced in Kwacha, and Innova Services, where we set up and look after your website, business email and IT.',
+  headline: 'One Lusaka team for your CRM, your website and your IT.',
+  sub: 'We make Zed CRM, a CRM priced in Kwacha from K50 a month. Through Innova Services, we set up and look after websites, business email and IT for Zambian companies.',
   primaryCta: 'Talk to us',
   secondaryCta: 'See Zed CRM',
 }
