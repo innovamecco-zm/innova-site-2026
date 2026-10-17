@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="780" viewBox="0 0 390 780">
+  <rect width="390" height="780" fill="#12141C"/>
+  <rect width="390" height="96" fill="#0e1017"/><line x1="0" y1="96" x2="390" y2="96" stroke="#23262f"/>
+  <g transform="translate(24 48) scale(1.1)"><rect width="24" height="24" rx="6" fill="#2563EB"/><polyline points="7,7.5 17,7.5 7,16.5 17,16.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g><text x="62" y="68" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600" fill="#F4F5F7">Leads</text>
+  <rect x="16" y="116" width="358" height="84" rx="12" fill="#fff" fill-opacity=".02" stroke="#23262f"/>
+    <circle cx="52" cy="158" r="18" fill="#2563EB" fill-opacity=".45"/>
+    <rect x="84" y="142" width="150" height="12" rx="6" fill="#fff" fill-opacity="0.45"/><rect x="84" y="166" width="210" height="10" rx="5" fill="#fff" fill-opacity="0.12"/>
+    <circle cx="340" cy="158" r="14" fill="#1f8f4e" fill-opacity=".6"/><rect x="16" y="216" width="358" height="84" rx="12" fill="#fff" fill-opacity=".02" stroke="#23262f"/>
+    <circle cx="52" cy="258" r="18" fill="#FC1817" fill-opacity=".45"/>
+    <rect x="84" y="242" width="150" height="12" rx="6" fill="#fff" fill-opacity="0.45"/><rect x="84" y="266" width="210" height="10" rx="5" fill="#fff" fill-opacity="0.12"/>
+    <circle cx="340" cy="258" r="14" fill="#1f8f4e" fill-opacity=".6"/><rect x="16" y="316" width="358" height="84" rx="12" fill="#fff" fill-opacity=".02" stroke="#23262f"/>
+    <circle cx="52" cy="358" r="18" fill="#0075E2" fill-opacity=".45"/>
+    <rect x="84" y="342" width="150" height="12" rx="6" fill="#fff" fill-opacity="0.45"/><rect x="84" y="366" width="210" height="10" rx="5" fill="#fff" fill-opacity="0.12"/>
+    <circle cx="340" cy="358" r="14" fill="#1f8f4e" fill-opacity=".6"/><rect x="16" y="416" width="358" height="84" rx="12" fill="#fff" fill-opacity=".02" stroke="#23262f"/>
+    <circle cx="52" cy="458" r="18" fill="#A81E7D" fill-opacity=".45"/>
+    <rect x="84" y="442" width="150" height="12" rx="6" fill="#fff" fill-opacity="0.45"/><rect x="84" y="466" width="210" height="10" rx="5" fill="#fff" fill-opacity="0.12"/>
+    <circle cx="340" cy="458" r="14" fill="#1f8f4e" fill-opacity=".6"/><rect x="16" y="516" width="358" height="84" rx="12" fill="#fff" fill-opacity=".02" stroke="#23262f"/>
+    <circle cx="52" cy="558" r="18" fill="#C9A24B" fill-opacity=".45"/>
+    <rect x="84" y="542" width="150" height="12" rx="6" fill="#fff" fill-opacity="0.45"/><rect x="84" y="566" width="210" height="10" rx="5" fill="#fff" fill-opacity="0.12"/>
+    <circle cx="340" cy="558" r="14" fill="#1f8f4e" fill-opacity=".6"/><rect x="16" y="616" width="358" height="84" rx="12" fill="#fff" fill-opacity=".02" stroke="#23262f"/>
+    <circle cx="52" cy="658" r="18" fill="#2563EB" fill-opacity=".45"/>
+    <rect x="84" y="642" width="150" height="12" rx="6" fill="#fff" fill-opacity="0.45"/><rect x="84" y="666" width="210" height="10" rx="5" fill="#fff" fill-opacity="0.12"/>
+    <circle cx="340" cy="658" r="14" fill="#1f8f4e" fill-opacity=".6"/>
+  <text x="110" y="760" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#9AA0AE" letter-spacing="1">PLACEHOLDER</text>
+</svg>

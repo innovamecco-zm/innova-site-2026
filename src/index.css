@@ -1,24 +1,353 @@
-/* src/index.css */
 @import "tailwindcss";
 
-@theme {
-  /* This replaces the 'extend' section of the old JS config */
-  --color-brand: #0a0a0a;
-  --font-display: "Plus Jakarta Sans", sans-serif;
-  
-  /* A vibrant, modern red */
-  --color-innova-red: #e11d48; 
-  /* A slightly darker version for the hover state */
-  --color-innova-red-dark: #be123c;
-  /* You can even define custom breakpoints or spacing here */
-  --breakpoint-3xl: 1920px;
-  
+/* Self-hosted Geist (variable, latin). Preloaded in index.html. */
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/geist-latin-wght.woff2") format("woff2-variations"), url("/fonts/geist-latin-wght.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
+/* Brand tokens — exact values from the brand system. */
+:root {
+  --bg: #0a0b10;
+  --bg-elev: #12141c;
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #f4f5f7;
+  --text-muted: #9aa0ae;
+  --red: #fc1817;
+  --blue: #0075e2;
+  --purple: #a81e7d;
+  --gold: #c9a24b;
+  --zed-blue: #2563eb;
+
+  /* Derived: brand blue lifted for text-on-dark (WCAG AA, 4.5:1+ on --bg and --bg-elev). */
+  --blue-text: #4ea1f5;
+  --brand-gradient: linear-gradient(90deg, var(--blue), var(--purple), var(--red));
+
+  color-scheme: dark;
 }
-::selection {
-  background: #e11d48; /* Your Innova Red */
-  color: white;
+
+@theme {
+  --color-bg: #0a0b10;
+  --color-elev: #12141c;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.14);
+  --color-fg: #f4f5f7;
+  --color-muted: #9aa0ae;
+  --color-red: #fc1817;
+  --color-blue: #0075e2;
+  --color-blue-text: #4ea1f5;
+  --color-purple: #a81e7d;
+  --color-gold: #c9a24b;
+  --color-zed: #2563eb;
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --radius-card: 12px;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
 }
-html {
-  scroll-behavior: smooth;
+
+@layer base {
+  html {
+    background: var(--bg);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--blue) 45%, transparent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+  @media (min-width: 640px) {
+    .container-x {
+      padding-inline: 24px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-x {
+      padding-inline: 32px;
+    }
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .card {
+    position: relative;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+      0 8px 24px -10px rgba(0, 0, 0, 0.55);
+  }
+
+  /* Gradient edge light (logo colours) on a 1px border. */
+  .edge-glow {
+    position: relative;
+    isolation: isolate;
+  }
+  .edge-glow::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--brand-gradient);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    padding-inline: 24px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 550;
+    line-height: 1;
+    white-space: nowrap;
+    transition:
+      transform 200ms var(--ease-out-expo),
+      box-shadow 200ms var(--ease-out-expo),
+      background-color 200ms ease,
+      border-color 200ms ease;
+  }
+  .btn-sm {
+    height: 40px;
+    padding-inline: 16px;
+    font-size: 14px;
+  }
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.2) inset,
+      0 8px 24px -8px color-mix(in srgb, var(--blue) 70%, transparent);
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    background: #0a80f0;
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.25) inset,
+      0 12px 32px -8px color-mix(in srgb, var(--blue) 90%, transparent);
+  }
+  /* Zed CRM brand: Zed blue only — never the Meco gradient or Meco blue. */
+  .btn-primary.btn-zed {
+    background: var(--zed-blue);
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.2) inset,
+      0 8px 24px -8px color-mix(in srgb, var(--zed-blue) 70%, transparent);
+  }
+  .btn-primary.btn-zed:hover {
+    background: #3b74ee;
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.25) inset,
+      0 12px 32px -8px color-mix(in srgb, var(--zed-blue) 90%, transparent);
+  }
+  .btn-ghost.btn-zed {
+    border-color: color-mix(in srgb, var(--zed-blue) 45%, transparent);
+  }
+  .btn-ghost.btn-zed:hover {
+    border-color: color-mix(in srgb, var(--zed-blue) 80%, transparent);
+    background: color-mix(in srgb, var(--zed-blue) 10%, transparent);
+  }
+  .btn-zed:focus-visible,
+  .zed-scope :focus-visible {
+    outline-color: var(--zed-blue);
+  }
+  /* Text links inside Zed CRM surfaces: a lighter Zed blue that passes AA on dark (#2563EB itself is ~3.6:1). */
+  .zed-scope .link {
+    color: #7ea6f8;
+  }
+  /* Contact form: the Zed CRM support hint appears only while the Zed CRM option is chosen. */
+  .zed-support-hint {
+    display: none;
+  }
+  div:has(> div > select option[value^="Zed CRM"]:checked) > .zed-support-hint {
+    display: block;
+  }
+  /* Zed-blue edge light (replaces .edge-glow on Zed CRM surfaces). */
+  .edge-zed {
+    border-color: color-mix(in srgb, var(--zed-blue) 55%, transparent);
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+      0 0 0 1px color-mix(in srgb, var(--zed-blue) 20%, transparent),
+      0 16px 48px -16px color-mix(in srgb, var(--zed-blue) 45%, transparent);
+  }
+
+  .btn-ghost {
+    color: var(--text);
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .btn-ghost:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 24px -12px rgba(255, 255, 255, 0.15);
+  }
+
+  .link {
+    color: var(--blue-text);
+    text-underline-offset: 3px;
+  }
+  .link:hover {
+    text-decoration: underline;
+  }
+
+  .field {
+    width: 100%;
+    height: 48px;
+    padding-inline: 16px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    color: var(--text);
+    font-size: 16px;
+    transition: border-color 150ms ease, background-color 150ms ease;
+  }
+  .field::placeholder {
+    color: #7d8392;
+  }
+  .field:hover {
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+  .field:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 1px;
+    border-color: transparent;
+  }
+  textarea.field {
+    height: auto;
+    padding-block: 12px;
+    resize: vertical;
+  }
+
+  /* Skip rendering off-screen sections until they approach the viewport. */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+
+  /*
+   * CSS-3D tilt. Only devices with a fine hover pointer get a 3D context; touch devices
+   * never tilt, so they keep flat (cheaper) layers.
+   */
+  @media (hover: hover) and (pointer: fine) {
+    .tilt-scene {
+      perspective: 1000px;
+    }
+    .tilt-card {
+      transform-style: preserve-3d;
+      transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    }
+    .depth-scene {
+      perspective: 1600px;
+    }
+    .depth-stage {
+      transform-style: preserve-3d;
+      transform: rotateX(6deg) rotateY(-12deg);
+    }
+    .tilt-pop {
+      transform: translateZ(var(--pop, 24px));
+    }
+    .depth-stage > * {
+      transform-style: preserve-3d;
+      transform: translateZ(var(--z, 0px));
+    }
+  }
+
+  /* Faint grid behind hero / sections. */
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
