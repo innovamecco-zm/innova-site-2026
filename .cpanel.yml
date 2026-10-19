@@ -1,0 +1,14 @@
+# cPanel Git Version Control deployment for mecoinnova.com.
+#
+# cPanel can't build the site (no Node on shared hosting), so `dist/` is committed:
+#   1. npm run build        (locally)
+#   2. git add -A && git commit && git push   (to the cPanel repo, or GitHub → "Update from Remote")
+#   3. cPanel → Git Version Control → Manage → Pull or Deploy → "Deploy HEAD Commit"
+#
+# Files are copied over the top of public_html; nothing there is deleted, so .well-known,
+# cgi-bin and mail folders are left alone. Old hashed files in assets/ may linger — harmless.
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=$HOME/public_html/
+    - /bin/cp -R dist/. $DEPLOYPATH

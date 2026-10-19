@@ -39,6 +39,14 @@ All copy lives in typed files under `src/content/` — edit there, not in compon
 - **3D hero** — `src/components/three/`. A static SVG poster renders first; the React Three Fiber scene is lazy-loaded after the page is idle, only on capable devices (more than 4 cores, no Save-Data, not 2G/3G, no reduced motion, WebGL available), and pauses when off-screen. Add `?3d=1` / `?3d=0` to any URL to force the scene or the poster for testing.
 - **Motion** — Framer Motion (`LazyMotion` + `m`) for scroll reveals, `MotionConfig reducedMotion="user"`; Lenis smooth scroll on mouse/trackpad devices only.
 
-## Hosting
+## Hosting (cPanel)
 
-Any static host works (Netlify, Vercel, Cloudflare Pages, S3). Serve `dist/`; configure `404.html` as the not-found page. No SPA rewrite is needed — every route has its own HTML file.
+The site is static: `dist/` is everything. `public/.htaccess` (copied into `dist/` on build) handles clean URLs, the 404 page, old-URL redirects, HTTPS, caching and compression on Apache.
+
+Deploys use cPanel **Git™ Version Control** with `.cpanel.yml`, which copies `dist/` into `~/public_html`. cPanel can't run the build, so `dist/` is committed:
+
+1. `npm run build`
+2. Commit (including `dist/`) and push to the repo cPanel tracks.
+3. cPanel → Git Version Control → Manage → **Pull or Deploy** → *Update from Remote*, then *Deploy HEAD Commit*.
+
+Set `VITE_CONTACT_ENDPOINT` in `.env` before building, or the contact form can't send.

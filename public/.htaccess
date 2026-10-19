@@ -1,0 +1,64 @@
+# mecoinnova.com — Apache config for cPanel hosting.
+# Vite copies this file from public/ into dist/ on every build.
+
+Options -Indexes -MultiViews
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+# Folders without an index (e.g. /products) would 403; show the branded 404 page instead.
+ErrorDocument 403 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS and drop "www."
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://mecoinnova.com%{REQUEST_URI} [L,R=301]
+
+  # Old-site URLs
+  RewriteRule ^get-started/?$ /products/zed-crm [L,R=301]
+  RewriteRule ^compliance/?$ /about [L,R=301]
+
+  # Canonical URLs have no trailing slash: /contact/ -> /contact
+  RewriteCond %{REQUEST_URI} !^/$
+  RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+  # Serve the prerendered page for clean URLs: /contact -> /contact.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+)$ /$1.html [L]
+</IfModule>
+
+# Route folders (e.g. /contact/) would otherwise get an automatic trailing-slash redirect.
+<IfModule mod_dir.c>
+  DirectorySlash Off
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# Caching: hashed build assets and fonts never change; HTML always revalidates.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(png|svg|webp|avif|jpg)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType image/svg+xml .svg
+  AddType application/manifest+json .webmanifest
+</IfModule>
