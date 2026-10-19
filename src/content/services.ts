@@ -31,7 +31,7 @@ export const SERVICES: Service[] = [
     icon: Code2,
     title: 'Custom software',
     summary: 'Systems built for one job, and kept running.',
-    detail: 'Like the Youth Candidate Tracker we built and maintain for WeCode Zambia: when off-the-shelf software doesn’t fit, we build it, host it and look after it after launch.',
+    detail: 'Like the Youth Candidate Tracker we built and maintain for WeCode Zambia and Global Platform Zambia: when off-the-shelf software doesn’t fit, we build it, host it and look after it after launch.',
   },
   {
     icon: ServerCog,

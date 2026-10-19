@@ -85,7 +85,7 @@ export default function Contact() {
         <PageHero
           eyebrow="Contact"
           heading="Tell us what you need."
-          body="Send the form and we will reply within one working day. For anything quick, WhatsApp is faster."
+          body="Send the form and we’ll reply within one working day. For anything quick, WhatsApp is faster."
         />
       </Island>
 

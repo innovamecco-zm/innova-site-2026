@@ -1,7 +1,10 @@
+import { CURRENCY, PLANS } from './pricing'
+import { ZED_CRM } from './site'
+
 export const HERO = {
   eyebrow: 'Meco Innova Ltd · Lusaka, Zambia',
   headline: 'One Lusaka team for your CRM, your website and your IT.',
-  sub: 'We make Zed CRM, a CRM priced in Kwacha from K50 a month. Through Innova Services, we set up and look after websites, business email and IT for Zambian companies.',
+  sub: `We make Zed CRM, a CRM priced in Kwacha from ${CURRENCY}${PLANS[0].price} a month. Through Innova Services, we set up and look after websites, business email and IT for Zambian businesses.`,
   primaryCta: 'Talk to us',
   secondaryCta: 'See Zed CRM',
 }
@@ -63,10 +66,10 @@ export const CTA_BANDS: Record<
     secondary: 'WhatsApp us',
   },
   zed: {
-    heading: 'Try Zed CRM free for 3 months.',
-    body: 'No card needed. Sign up, add your team, and pay by mobile money only when you’re ready.',
+    heading: `Try Zed CRM free for ${ZED_CRM.trialLabel}.`,
+    body: 'No card needed. Sign up, add your team, and pay by mobile money or cash only when you’re ready.',
     primary: 'Start free trial',
-    primaryTo: 'https://zedcrms.com/register',
+    primaryTo: ZED_CRM.signupUrl,
     secondary: 'Ask about Zed CRM',
   },
 }
