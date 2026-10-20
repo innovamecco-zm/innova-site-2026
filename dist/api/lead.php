@@ -139,7 +139,10 @@ if ($name === '') {
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     respond(422, ['ok' => false, 'field' => 'email', 'error' => 'Please enter a valid email address.']);
 }
-if ($phone !== '' && !preg_match('/^\+?[0-9\s\-()]{7,20}$/', $phone)) {
+// Zed CRM only accepts digits with an optional leading "+" (/^\+?\d+$/), so
+// "+260 97 123 4567" is sent as "+260971234567". The typed form stays in the description.
+$phoneDigits = preg_replace('/[\s\-().]/', '', $phone) ?? '';
+if ($phone !== '' && !preg_match('/^\+?\d{7,15}$/', $phoneDigits)) {
     respond(422, ['ok' => false, 'field' => 'phone', 'error' => 'Please enter a valid phone number, for example +260 97 123 4567.']);
 }
 if (!array_key_exists($need, PIPELINES)) {
@@ -182,7 +185,7 @@ $payload = [
     ],
 ];
 if ($phone !== '') {
-    $payload['persons']['contact_numbers'] = [['value' => $phone, 'label' => 'work']];
+    $payload['persons']['contact_numbers'] = [['value' => $phoneDigits, 'label' => 'work']];
 }
 
 // ── Send to Zed CRM ─────────────────────────────────────────────────────────────────────
