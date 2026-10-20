@@ -29,9 +29,9 @@ export const ROUTES: RouteMeta[] = [
   },
   {
     path: '/services',
-    title: 'Innova Services: websites, business email and IT in Lusaka | Meco Innova',
+    title: 'Websites, business email and IT in Lusaka | Meco Innova',
     description:
-      'Innova Services is Meco Innova’s managed IT line: websites, business email and domains, custom software and IT management for Zambian businesses, priced in Kwacha.',
+      'Meco Innova sets up and looks after websites, business email and domains, custom software and IT for Zambian businesses, priced in Kwacha.',
     index: true,
   },
   {
@@ -43,7 +43,7 @@ export const ROUTES: RouteMeta[] = [
   {
     path: '/about',
     title: 'About us | Meco Innova',
-    description: 'Meet the Lusaka team behind Zed CRM and Innova Services, and why we build software priced in Kwacha.',
+    description: 'Meet the Lusaka team behind Zed CRM and our website, email and IT services, and why we build software priced in Kwacha.',
     index: true,
   },
   {

@@ -23,11 +23,11 @@ export const ZED_FAQ: FaqItem[] = [
   },
   {
     q: 'Can I use it on my phone?',
-    a: 'Yes. Zed CRM installs as an app (a PWA) on Android and iPhone, straight from the browser.',
+    a: 'Yes. Zed CRM installs as an app on Android and iPhone, straight from the browser.',
   },
   {
     q: 'Where is my data kept?',
-    a: 'Each business has its own separate database, with off-server backups. Your data is never mixed with another company’s.',
+    a: 'Each business’s data is kept on its own and backed up. It’s never mixed with another company’s.',
   },
   {
     q: 'Can you help us move from spreadsheets?',

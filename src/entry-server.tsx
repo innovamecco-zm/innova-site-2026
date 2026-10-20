@@ -42,6 +42,7 @@ export function head(path: string): string {
     '@id': `${SITE.url}/#organization`,
     name: SITE.legalName,
     alternateName: SITE.name,
+    foundingDate: String(SITE.foundingYear),
     description: SITE.schemaDescription,
     url: SITE.url,
     logo: `${SITE.url}/logo.png`,

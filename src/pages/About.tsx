@@ -44,7 +44,7 @@ export default function About() {
         <section className="cv-auto border-t border-line py-24 sm:py-32" aria-labelledby="team-heading">
           <div className="container-x flex flex-col gap-12">
             <Reveal>
-              <SectionHeader eyebrow={ABOUT.teamHeading} heading={<span id="team-heading">Three people, one phone number.</span>} />
+              <SectionHeader eyebrow={ABOUT.teamHeading} heading={<span id="team-heading">One team, one phone number.</span>} />
             </Reveal>
             <Reveal as="ul" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {TEAM.map((m) => (

@@ -10,13 +10,13 @@ export function WhatsAppIcon({ className }: { className?: string }) {
   )
 }
 
-/** Picks the WhatsApp prefill that matches the page: Zed CRM, Innova Services, or the company. */
+/** Picks the WhatsApp prefill that matches the page: Zed CRM, services, or the company. */
 export function WhatsAppFab() {
   const { pathname } = useLocation()
   const [href, label] = pathname.startsWith('/products/zed-crm')
     ? [WHATSAPP_URLS.zed, 'Ask about Zed CRM on WhatsApp']
     : pathname.startsWith('/services')
-      ? [WHATSAPP_URLS.services, 'Ask Innova Services on WhatsApp']
+      ? [WHATSAPP_URLS.services, 'Ask about our services on WhatsApp']
       : [WHATSAPP_URLS.meco, 'Chat with Meco Innova on WhatsApp']
   return (
     <a

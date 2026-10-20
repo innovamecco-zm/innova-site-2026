@@ -9,9 +9,9 @@ export interface Service {
 }
 
 export const SERVICES_INTRO = {
-  eyebrow: 'Innova Services',
+  eyebrow: 'Services',
   heading: 'Your website, email and IT, looked after.',
-  body: 'Innova Services is Meco Innova’s managed IT line. We set things up, host them and fix them when they break, and you deal with the same small Lusaka team every time.',
+  body: 'We set up your website, email and IT, host them, and fix them when they break. You deal with the same Lusaka team every time.',
 }
 
 export const SERVICES: Service[] = [
@@ -37,7 +37,7 @@ export const SERVICES: Service[] = [
     icon: ServerCog,
     title: 'IT management',
     summary: 'Accounts, devices and backups, handled.',
-    detail: 'We keep track of who has access to what, keep your backups off-site, and are a WhatsApp message away when something stops working.',
+    detail: 'We keep track of who has access to what, keep your backups safe, and are a WhatsApp message away when something stops working.',
   },
 ]
 

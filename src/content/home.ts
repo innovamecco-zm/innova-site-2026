@@ -4,7 +4,7 @@ import { ZED_CRM } from './site'
 export const HERO = {
   eyebrow: 'Meco Innova Ltd · Lusaka, Zambia',
   headline: 'One Lusaka team for your CRM, your website and your IT.',
-  sub: `We make Zed CRM, a CRM priced in Kwacha from ${CURRENCY}${PLANS[0].price} a month. Through Innova Services, we set up and look after websites, business email and IT for Zambian businesses.`,
+  sub: `We make Zed CRM, a CRM priced in Kwacha from ${CURRENCY}${PLANS[0].price} a month. We also set up and look after websites, business email and IT for Zambian businesses.`,
   primaryCta: 'Talk to us',
   secondaryCta: 'See Zed CRM',
 }
@@ -18,8 +18,8 @@ export const TWO_LINES = {
     cta: 'Explore Zed CRM',
   },
   services: {
-    label: 'Managed IT',
-    title: 'Innova Services',
+    label: 'Websites, email & IT',
+    title: 'Services',
     body: 'For your office. Your website, email on your own domain, devices, accounts and backups, looked after by one team.',
     cta: 'See services',
   },
@@ -27,15 +27,15 @@ export const TWO_LINES = {
 
 export const WHY = {
   eyebrow: 'Why Meco Innova',
-  heading: 'Small, local, and on WhatsApp.',
+  heading: 'Local, reachable, and on WhatsApp.',
   points: [
     {
       title: 'Local',
-      body: 'We’re a Lusaka team. We price in Kwacha and you can pay by Airtel Money, MTN MoMo or Zamtel Kwacha, with no dollar card needed.',
+      body: 'We’re based in Lusaka and price everything in Kwacha, so you never pay for exchange rates or a dollar card.',
     },
     {
-      title: 'Built properly',
-      body: 'Off-server backups and HTTPS on everything we host, as standard, not as an extra.',
+      title: 'We stay on',
+      body: 'We don’t hand over and disappear. We host, look after and fix what we build for you.',
     },
     {
       title: 'Human support',

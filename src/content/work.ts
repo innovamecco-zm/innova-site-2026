@@ -13,7 +13,7 @@ export interface CaseStudy {
 }
 
 export const WORK_INTRO = {
-  eyebrow: 'Selected work',
+  eyebrow: 'Our work',
   heading: 'Client work.',
   body: 'A civic platform for Zambia’s 2026 elections, and the website, email and IT for a Lusaka procurement firm.',
 }
@@ -33,10 +33,12 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     slug: 'gentlemans-resources',
-    title: 'Gentleman’s Resources Ltd',
-    client: 'Managed IT client · Procurement',
-    summary: 'Gentleman’s Resources is a Lusaka procurement firm. We run its website and business email and look after its IT.',
+    title: 'Gentlemans Resources Ltd',
+    client: 'Website, email and IT client · Procurement',
+    summary:
+      'Gentlemans Resources is a Lusaka sourcing and procurement firm, registered with ZPPA, supplying government institutions and companies across Lusaka and the Copperbelt. We run its website and business email and look after its IT.',
     tags: ['Website', 'Email', 'IT management'],
     accent: 'blue',
+    href: 'https://gentlemansltd.com',
   },
 ]

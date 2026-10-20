@@ -27,8 +27,8 @@ export const ZED_FEATURES: Feature[] = [
   { icon: FileText, title: 'Quotations', body: 'Build and send quotes in Kwacha straight from the deal you’re working on.' },
   { icon: Inbox, title: 'Email inside the CRM', body: 'Each business gets its own inbox in Zed CRM, so emails sit next to the customer they belong to.' },
   { icon: MessageCircle, title: 'Click-to-call & WhatsApp', body: 'Call or message a customer from their record in one tap.' },
-  { icon: Smartphone, title: 'Works on your phone', body: 'Install Zed CRM as an app (PWA) on Android or iPhone. No app store needed.' },
-  { icon: Database, title: 'Your data, kept separate', body: 'Every business runs on its own separate database. Your records never share a table with anyone else’s.' },
+  { icon: Smartphone, title: 'Works on your phone', body: 'Install Zed CRM as an app on Android or iPhone. No app store needed.' },
+  { icon: Database, title: 'Your data, kept separate', body: 'Every business’s records are kept on their own, never mixed with anyone else’s.' },
 ]
 
 export interface Screen {
