@@ -23,7 +23,7 @@ export const FOOTER_LINKS: { heading: string; links: NavItem[] }[] = [
     ],
   },
   {
-    heading: 'Innova Services',
+    heading: 'Services',
     links: [{ label: 'Overview', to: '/services' }],
   },
   {

@@ -1,3 +1,6 @@
+import { CURRENCY, PLANS } from './pricing'
+import { SITE, ZED_CRM } from './site'
+
 export interface RouteMeta {
   path: string
   title: string
@@ -11,9 +14,9 @@ export interface RouteMeta {
 export const ROUTES: RouteMeta[] = [
   {
     path: '/',
-    title: 'Meco Innova — Software and IT for Zambian businesses',
+    title: 'Meco Innova | Software and IT for Zambian businesses',
     description:
-      'Meco Innova is a Lusaka software company. We make Zed CRM, a CRM priced in Kwacha from K50 a month, and run websites, business email and IT for Zambian companies.',
+      `Meco Innova is a Lusaka software company. We make Zed CRM, a CRM priced in Kwacha from ${CURRENCY}${PLANS[0].price} a month, and run websites, business email and IT for Zambian businesses.`,
     index: true,
   },
   {
@@ -21,14 +24,14 @@ export const ROUTES: RouteMeta[] = [
     title: 'Zed CRM — The Kwacha-priced CRM for Zambian SMEs | Meco Innova',
     ogImage: '/og-zed-crm.png',
     description:
-      'Leads, pipeline, contacts, quotations and email in one CRM. Works on your phone, priced in Kwacha. Free for 3 months, no credit card.',
+      `Leads, pipeline, contacts, quotations and email in one CRM. Works on your phone, priced in Kwacha. Free for ${ZED_CRM.trialLabel}, no credit card.`,
     index: true,
   },
   {
     path: '/services',
-    title: 'Websites, business email and managed IT in Lusaka | Meco Innova',
+    title: 'Websites, business email and IT in Lusaka | Meco Innova',
     description:
-      'Innova Services by Meco Innova: websites, business email and domains, custom software and IT management for Zambian companies, priced in Kwacha.',
+      'Meco Innova sets up and looks after websites, business email and domains, custom software and IT for Zambian businesses, priced in Kwacha.',
     index: true,
   },
   {
@@ -39,14 +42,14 @@ export const ROUTES: RouteMeta[] = [
   },
   {
     path: '/about',
-    title: 'About Meco Innova — Lusaka software company',
-    description: 'Meet the Lusaka team behind Zed CRM and Innova Services, and why we build software priced in Kwacha.',
+    title: 'About us | Meco Innova',
+    description: 'Meet the Lusaka team behind Zed CRM and our website, email and IT services, and why we build software priced in Kwacha.',
     index: true,
   },
   {
     path: '/contact',
-    title: 'Contact Meco Innova — WhatsApp +260 767 030 735',
-    description: 'Talk to Meco Innova about Zed CRM, websites, email or IT. Message us on WhatsApp or send the form.',
+    title: 'Contact us | Meco Innova',
+    description: `Talk to Meco Innova about Zed CRM, websites, email or IT. Message us on WhatsApp at ${SITE.whatsappNumber} or send the form.`,
     index: true,
   },
   {

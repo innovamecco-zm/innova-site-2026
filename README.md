@@ -25,10 +25,10 @@ Copy `.env.example` to `.env` and set:
 
 All copy lives in typed files under `src/content/` — edit there, not in components:
 
-- `site.ts` — company details, WhatsApp number, email, Zed CRM URLs, pricing teaser (`PRICING_TEASER`), marketplace placeholder, recognition line
-- `home.ts` — hero, "why us", final CTA
+- `site.ts` — company details, WhatsApp links, email, Zed CRM URLs and trial length, payment methods, marketplace placeholder, recognition line
+- `home.ts` — hero, two lines of business, "why us", CTA bands
 - `products.ts` — Zed CRM features and screenshot paths
-- `pricing.ts` — Starter / Growth / Pro (`price: null` shows "Talk to us")
+- `pricing.ts` — Starter / Growth / Pro. The "from K…" price in the hero, home teaser and meta description is read from the first plan
 - `faq.ts`, `services.ts`, `work.ts`, `team.ts`, `nav.ts`
 - `seo.ts` — per-route `<title>` and meta description (also drives `sitemap.xml`)
 

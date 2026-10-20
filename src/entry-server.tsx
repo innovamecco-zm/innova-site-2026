@@ -42,6 +42,7 @@ export function head(path: string): string {
     '@id': `${SITE.url}/#organization`,
     name: SITE.legalName,
     alternateName: SITE.name,
+    foundingDate: String(SITE.foundingYear),
     description: SITE.schemaDescription,
     url: SITE.url,
     logo: `${SITE.url}/logo.png`,
@@ -91,7 +92,7 @@ export function head(path: string): string {
     url: ZED_CRM.url,
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web, Android, iOS (PWA)',
-    description: 'A Kwacha-priced CRM for Zambian SMEs: leads and pipeline, contacts, quotations, email inside the CRM, click-to-call and WhatsApp.',
+    description: 'The CRM for Zambian SMEs, priced in Kwacha: leads and pipeline, contacts, quotations, email inside the CRM, click-to-call and WhatsApp.',
     publisher: { '@id': `${SITE.url}/#organization` },
     offers: {
       '@type': 'Offer',

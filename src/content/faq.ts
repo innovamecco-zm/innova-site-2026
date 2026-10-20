@@ -1,3 +1,5 @@
+import { PAYMENT_METHODS, ZED_CRM } from './site'
+
 export interface FaqItem {
   q: string
   a: string
@@ -8,24 +10,24 @@ export interface FaqItem {
 export const ZED_FAQ: FaqItem[] = [
   {
     q: 'Is there a free trial?',
-    a: 'Yes. Every plan is free for the first 3 months, and you don’t need a credit card. Sign up at zedcrms.com.',
-    links: { 'zedcrms.com': 'https://zedcrms.com/register' },
+    a: `Yes. Every plan is free for the first ${ZED_CRM.trialLabel}, and you don’t need a credit card. Sign up at zedcrms.com.`,
+    links: { 'zedcrms.com': ZED_CRM.signupUrl },
   },
   {
     q: 'How do I pay?',
-    a: 'In Kwacha, by Airtel Money, MTN MoMo, Zamtel Kwacha, or cash.',
+    a: `In Kwacha, by ${PAYMENT_METHODS}.`,
   },
   {
     q: 'Why is it priced in Kwacha?',
-    a: 'Because that is what you earn in. You do not lose money to exchange rates or card fees on a dollar subscription.',
+    a: 'Because that’s what you earn in. You don’t lose money to exchange rates or card fees on a dollar subscription.',
   },
   {
     q: 'Can I use it on my phone?',
-    a: 'Yes. Zed CRM installs as an app (a PWA) on Android and iPhone, straight from the browser.',
+    a: 'Yes. Zed CRM installs as an app on Android and iPhone, straight from the browser.',
   },
   {
     q: 'Where is my data kept?',
-    a: 'Each business has its own separate database, with off-server backups. Your data is never mixed with another company’s.',
+    a: 'Each business’s data is kept on its own and backed up. It’s never mixed with another company’s.',
   },
   {
     q: 'Can you help us move from spreadsheets?',

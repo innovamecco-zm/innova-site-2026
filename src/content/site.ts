@@ -6,10 +6,11 @@ export const SITE = {
   legalName: 'Meco Innova Ltd',
   url: 'https://mecoinnova.com',
   descriptor:
-    'Meco Innova Ltd is a Lusaka software company. We make Zed CRM and, through Innova Services, run websites, email and IT for Zambian businesses.',
+    'Meco Innova Ltd is a Lusaka software company. We make Zed CRM, and we set up and look after websites, email and IT for Zambian businesses.',
   /** Used for JSON-LD Organization / LocalBusiness `description`. */
   schemaDescription:
-    'Lusaka software company. Makes Zed CRM and provides managed websites, business email and IT through Innova Services.',
+    'Lusaka software company. Makes Zed CRM and provides websites, business email and IT services.',
+  foundingYear: 2026,
   city: 'Lusaka',
   country: 'Zambia',
   countryCode: 'ZM',

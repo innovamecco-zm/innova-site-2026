@@ -9,11 +9,11 @@ import { CONTACT_ENDPOINT, SITE, WHATSAPP_URLS } from '../content/site'
 
 const NEED_GROUPS: { label: string; options: string[] }[] = [
   { label: 'Zed CRM', options: ['Zed CRM (trial, pricing or support)'] },
-  { label: 'Innova Services', options: ['A website', 'Business email & domains', 'Custom software', 'IT management'] },
+  { label: 'Services', options: ['A website', 'Business email & domains', 'Custom software', 'IT management'] },
   { label: 'Other', options: ['Marketplace updates', 'Something else'] },
 ]
 
-/** ?need= values that preselect an option (services opens on the first Innova Services option). */
+/** ?need= values that preselect an option (services opens on the first Services option). */
 const NEED_PRESETS: Record<string, string> = {
   zed: 'Zed CRM (trial, pricing or support)',
   services: 'A website',
@@ -85,7 +85,7 @@ export default function Contact() {
         <PageHero
           eyebrow="Contact"
           heading="Tell us what you need."
-          body="Send the form and we will reply within one working day. For anything quick, WhatsApp is faster."
+          body="Send the form and we’ll reply within one working day. For anything quick, WhatsApp is faster."
         />
       </Island>
 

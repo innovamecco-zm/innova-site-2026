@@ -4,7 +4,7 @@ import { Reveal, RevealItem } from '../../lib/motion'
 import { LogoMark, ZedLogo } from '../brand/Logo'
 import { ButtonLink } from '../ui/ButtonLink'
 
-/** The company's two lines of business, side by side: Zed CRM (product) and Innova Services (managed IT). */
+/** The company's two lines of business, side by side: Zed CRM (product) and services (websites, email and IT). */
 export function TwoLines() {
   const { zed, services } = TWO_LINES
   return (
