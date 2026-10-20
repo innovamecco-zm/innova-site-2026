@@ -22,6 +22,14 @@ declare(strict_types=1);
 // Override with environment variables when testing against a local mock.
 const ZED_WEBFORM_URL_DEFAULT = 'https://mecoinnovaltd.zedcrms.com/web-forms/forms/1';
 
+/**
+ * The web form's public page (Settings → Web Forms → form 1 → Embed → Public URL).
+ * Zed CRM (Krayin) only exempts `admin/web-forms/forms/*` from CSRF checks, but the
+ * submit route is `web-forms/forms/{id}`, so a bare POST is refused with 419. Loading
+ * this page first gives us the session and XSRF-TOKEN cookies, as a browser would get.
+ */
+const ZED_FORM_PAGE_URL_DEFAULT = 'https://mecoinnovaltd.zedcrms.com/web-forms/forms/7zQouAAkizZFnw8rxQfGe0zEfbiKPGaNXYPclhBAb7khl2CfSg/form.html';
+
 /** "What do you need?" option → Zed CRM pipeline id (ids from the web form's Pipeline list). */
 const PIPELINES = [
     'Zed CRM (trial, pricing or support)' => 2, // Zedcrms Tenants
@@ -180,17 +188,41 @@ if ($phone !== '') {
 // ── Send to Zed CRM ─────────────────────────────────────────────────────────────────────
 
 $url = getenv('ZED_WEBFORM_URL') ?: ZED_WEBFORM_URL_DEFAULT;
+$formPage = getenv('ZED_FORM_PAGE_URL') ?: ZED_FORM_PAGE_URL_DEFAULT;
 
-$ch = curl_init($url);
+// One handle for both requests, with curl's in-memory cookie jar, so the cookies set
+// by the form page go back with the submission.
+$ch = curl_init();
 curl_setopt_array($ch, [
-    CURLOPT_POST           => true,
-    CURLOPT_POSTFIELDS     => http_build_query($payload),
-    CURLOPT_HTTPHEADER     => ['Accept: application/json', 'Content-Type: application/x-www-form-urlencoded'],
+    CURLOPT_COOKIEFILE     => '',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_FOLLOWLOCATION => false,
     CURLOPT_CONNECTTIMEOUT => 5,
     CURLOPT_TIMEOUT        => 15,
-    CURLOPT_USERAGENT      => 'mecoinnova.com contact form',
+    CURLOPT_USERAGENT      => 'Mozilla/5.0 (compatible; mecoinnova.com contact form)',
+]);
+
+// 1. Load the public form page to get the session and XSRF-TOKEN cookies.
+curl_setopt_array($ch, [CURLOPT_URL => $formPage, CURLOPT_HTTPGET => true, CURLOPT_HTTPHEADER => ['Accept: text/html']]);
+curl_exec($ch);
+$xsrf = '';
+foreach (curl_getinfo($ch, CURLINFO_COOKIELIST) ?: [] as $line) {
+    $parts = explode("\t", $line);
+    if (count($parts) >= 7 && $parts[5] === 'XSRF-TOKEN') {
+        $xsrf = urldecode($parts[6]);
+    }
+}
+
+// 2. Submit, sending the token back the way the form page's own script does.
+$headers = ['Accept: application/json', 'Content-Type: application/x-www-form-urlencoded', 'Referer: ' . $formPage];
+if ($xsrf !== '') {
+    $headers[] = 'X-XSRF-TOKEN: ' . $xsrf;
+}
+curl_setopt_array($ch, [
+    CURLOPT_URL        => $url,
+    CURLOPT_POST       => true,
+    CURLOPT_POSTFIELDS => http_build_query($payload),
+    CURLOPT_HTTPHEADER => $headers,
 ]);
 $responseBody = curl_exec($ch);
 $status = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
@@ -203,7 +235,7 @@ if ($responseBody !== false && ($status === 200 || $status === 301)) {
     respond(200, ['ok' => true]);
 }
 
-$errorLog = sprintf('[mecoinnova lead] Zed CRM returned %d %s %s', $status, $curlError, is_string($responseBody) ? mb_substr($responseBody, 0, 500) : '');
+$errorLog = sprintf('[mecoinnova lead] Zed CRM returned %d (xsrf %s) %s %s', $status, $xsrf !== '' ? 'sent' : 'missing', $curlError, is_string($responseBody) ? mb_substr($responseBody, 0, 500) : '');
 error_log($errorLog);
 
 // Validation errors: point the visitor at the field Zed CRM rejected.

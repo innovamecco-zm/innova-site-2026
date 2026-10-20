@@ -58,4 +58,5 @@ The contact form posts to `public/api/lead.php` (copied to `dist/api/` on build)
 - **Spam:** honeypot field, same-origin check, server-side validation, and at most 5 valid submissions per visitor per 10 minutes.
 - **Zed CRM web form:** must keep Name, Emails, Contact Numbers, Pipeline, Title and Description. Zed CRM silently drops any field that isn't on the form.
 - **Requirements:** PHP 7.4+ with curl and mbstring (standard on cPanel). `vite dev` can't run PHP, so the form only sends from the built site on the host.
+- **CSRF:** Zed CRM (Krayin) refuses a bare POST to the web form with 419, so the script loads the form's public page first (`ZED_FORM_PAGE_URL_DEFAULT` in `lead.php`) and sends its `XSRF-TOKEN` back. If the web form's public link changes, update that constant.
 - **Failures** are written to the PHP error log as `[mecoinnova lead] Zed CRM returned …`.
