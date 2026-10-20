@@ -1,14 +1,14 @@
 export interface TeamMember {
   name: string
   role: string
-  /** TODO(placeholder): replace with a real square 2x WebP in /public/team/ and update the path. */
+  /** Square 1280px WebP in /public/team/. */
   photo: string
 }
 
 export const TEAM: TeamMember[] = [
   { name: 'Daliso Banda', role: 'Operations & Development', photo: '/team/daliso-banda.webp' },
   { name: 'Memory Mupotola', role: 'Marketing', photo: '/team/memory-mupotola.webp' },
-  { name: 'Chimwemwe Banda', role: 'Client Success & Support', photo: '/team/chimwemwe-banda.svg' },
+  { name: 'Chimwemwe Banda', role: 'Client Success & Support', photo: '/team/chimwemwe-banda.webp' },
 ]
 
 export const ABOUT = {

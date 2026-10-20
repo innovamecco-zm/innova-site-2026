@@ -160,16 +160,3 @@ const mobile = `<svg xmlns="http://www.w3.org/2000/svg" width="390" height="780"
 </svg>`
 writeIfMissing('screens/zed-mobile.svg', mobile)
 
-// ── Placeholder team photos (initials), for anyone without a real photo yet ─
-const team = [['chimwemwe-banda', 'CB', PURPLE]]
-for (const [slug, initials, color] of team) {
-  writeIfMissing(
-    `team/${slug}.svg`,
-    `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640">
-  <defs><radialGradient id="g" cx="50%" cy="35%" r="70%"><stop offset="0" stop-color="${color}" stop-opacity=".35"/><stop offset="1" stop-color="${ELEV}"/></radialGradient></defs>
-  <rect width="640" height="640" fill="url(#g)"/>
-  <text x="320" y="350" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="140" font-weight="600" fill="#F4F5F7" fill-opacity=".9" letter-spacing="-4">${initials}</text>
-  <text x="320" y="600" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="${MUTED}" letter-spacing="2">PHOTO PLACEHOLDER</text>
-</svg>`,
-  )
-}
