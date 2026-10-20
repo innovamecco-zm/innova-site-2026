@@ -22,6 +22,13 @@ const NEED_PRESETS: Record<string, string> = {
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
+/** Reply from public/api/lead.php. */
+interface LeadResponse {
+  ok: boolean
+  error?: string
+  field?: string
+}
+
 function Field({ id, label, children, optional }: { id: string; label: string; children: React.ReactNode; optional?: boolean }) {
   return (
     <div className="flex flex-col gap-2">
@@ -36,6 +43,7 @@ function Field({ id, label, children, optional }: { id: string; label: string; c
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>('idle')
+  const [error, setError] = useState<LeadResponse | null>(null)
   const [params] = useSearchParams()
   const preset = NEED_PRESETS[params.get('need') ?? '']
 
@@ -58,24 +66,21 @@ export default function Contact() {
       setStatus('sent')
       return
     }
-    if (!CONTACT_ENDPOINT) {
-      setStatus('error')
-      return
-    }
-
     setStatus('sending')
+    setError(null)
     try {
       const body = new URLSearchParams()
-      data.forEach((v, k) => k !== 'company_website' && body.append(k, String(v)))
-      body.append('source', 'mecoinnova.com')
-      body.append('submitted_at', new Date().toISOString())
-      // Apps Script web apps don't return CORS headers; no-cors sends the request and
-      // gives an opaque response. A network failure still throws and shows the error state.
-      await fetch(CONTACT_ENDPOINT, { method: 'POST', mode: 'no-cors', body })
+      data.forEach((v, k) => body.append(k, String(v)))
+      const res = await fetch(CONTACT_ENDPOINT, { method: 'POST', body, headers: { Accept: 'application/json' } })
+      const reply = (await res.json().catch(() => ({ ok: false }))) as LeadResponse
+      if (!res.ok || !reply.ok) throw reply
       setStatus('sent')
       form.reset()
-    } catch {
+    } catch (err) {
+      const reply = err && typeof err === 'object' && 'ok' in err ? (err as LeadResponse) : null
+      setError(reply)
       setStatus('error')
+      if (reply?.field) form.querySelector<HTMLElement>(`#${reply.field}`)?.focus()
     }
   }
 
@@ -158,13 +163,17 @@ export default function Contact() {
                   {status === 'error' && (
                     <p role="alert" className="flex items-start gap-2 rounded-[12px] border border-red/40 bg-red/10 p-4 text-[14px] leading-[1.5] text-fg">
                       <AlertCircle className="mt-0.5 size-4 shrink-0 text-red" aria-hidden="true" />
-                      <span>
-                        Something went wrong sending your message. Please try again, or message us on{' '}
-                        <a href={WHATSAPP_URLS.meco} target="_blank" rel="noopener noreferrer" className="underline">
-                          WhatsApp
-                        </a>
-                        .
-                      </span>
+                      {error?.field ? (
+                        <span>{error.error}</span>
+                      ) : (
+                        <span>
+                          {error?.error ?? 'Something went wrong sending your message. Please try again.'} Or message us on{' '}
+                          <a href={WHATSAPP_URLS.meco} target="_blank" rel="noopener noreferrer" className="underline">
+                            WhatsApp
+                          </a>
+                          .
+                        </span>
+                      )}
                     </p>
                   )}
 

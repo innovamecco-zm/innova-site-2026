@@ -64,5 +64,8 @@ export const RECOGNITION =
 /** Short form, used as a badge on the Zed CRM page. */
 export const RECOGNITION_BADGE = 'Winning innovation · FAEO Women in Engineering · UNESCO Africa Engineering Week 2026'
 
-/** Contact form endpoint (Google Apps Script web app). Set VITE_CONTACT_ENDPOINT in .env. */
-export const CONTACT_ENDPOINT: string = import.meta.env.VITE_CONTACT_ENDPOINT ?? ''
+/**
+ * Contact form endpoint: public/api/lead.php, which turns each enquiry into a lead in
+ * Meco Innova's Zed CRM. Override with VITE_CONTACT_ENDPOINT in .env if needed.
+ */
+export const CONTACT_ENDPOINT: string = import.meta.env.VITE_CONTACT_ENDPOINT || '/api/lead.php'

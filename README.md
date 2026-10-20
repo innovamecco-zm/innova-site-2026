@@ -19,7 +19,7 @@ Copy `.env.example` to `.env` and set:
 
 | Variable | Purpose |
 | --- | --- |
-| `VITE_CONTACT_ENDPOINT` | Google Apps Script web-app URL that receives the contact form (form-encoded POST). |
+| `VITE_CONTACT_ENDPOINT` | Optional. Where the contact form posts; defaults to `/api/lead.php` (see below). |
 
 ## Editing content
 
@@ -49,4 +49,13 @@ Deploys use cPanel **Git™ Version Control** with `.cpanel.yml`, which copies `
 2. Commit (including `dist/`) and push to the repo cPanel tracks.
 3. cPanel → Git Version Control → Manage → **Pull or Deploy** → *Update from Remote*, then *Deploy HEAD Commit*.
 
-Set `VITE_CONTACT_ENDPOINT` in `.env` before building, or the contact form can't send.
+## Contact form → Zed CRM leads
+
+The contact form posts to `public/api/lead.php` (copied to `dist/api/` on build), which forwards each enquiry to Meco Innova's own Zed CRM web form at `mecoinnovaltd.zedcrms.com/web-forms/forms/1`. Zed CRM then creates a contact and a lead.
+
+- **Fields:** name, email and phone go on the contact. The lead title reads like `Website: Jane Phiri (Acme Ltd)` and the description holds the message, business, request type, phone and email.
+- **Pipelines:** the "What do you need?" choice picks the pipeline (`PIPELINES` in `lead.php`): Zed CRM → Zedcrms Tenants, website/email → Websites, custom software/IT → Information system, anything else → Default Pipeline.
+- **Spam:** honeypot field, same-origin check, server-side validation, and at most 5 valid submissions per visitor per 10 minutes.
+- **Zed CRM web form:** must keep Name, Emails, Contact Numbers, Pipeline, Title and Description. Zed CRM silently drops any field that isn't on the form.
+- **Requirements:** PHP 7.4+ with curl and mbstring (standard on cPanel). `vite dev` can't run PHP, so the form only sends from the built site on the host.
+- **Failures** are written to the PHP error log as `[mecoinnova lead] Zed CRM returned …`.
