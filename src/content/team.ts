@@ -6,8 +6,8 @@ export interface TeamMember {
 }
 
 export const TEAM: TeamMember[] = [
-  { name: 'Daliso Banda', role: 'Operations & Development', photo: '/team/daliso-banda.svg' },
-  { name: 'Memory Mupotola', role: 'Marketing', photo: '/team/memory-mupotola.svg' },
+  { name: 'Daliso Banda', role: 'Operations & Development', photo: '/team/daliso-banda.webp' },
+  { name: 'Memory Mupotola', role: 'Marketing', photo: '/team/memory-mupotola.webp' },
   { name: 'Chimwemwe Banda', role: 'Client Success & Support', photo: '/team/chimwemwe-banda.svg' },
 ]
 

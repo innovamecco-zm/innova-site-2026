@@ -160,12 +160,8 @@ const mobile = `<svg xmlns="http://www.w3.org/2000/svg" width="390" height="780"
 </svg>`
 writeIfMissing('screens/zed-mobile.svg', mobile)
 
-// ── Placeholder team photos (initials) ─────────────────────────────────────
-const team = [
-  ['daliso-banda', 'DB', RED],
-  ['memory-mupotola', 'MM', BLUE],
-  ['chimwemwe-banda', 'CB', PURPLE],
-]
+// ── Placeholder team photos (initials), for anyone without a real photo yet ─
+const team = [['chimwemwe-banda', 'CB', PURPLE]]
 for (const [slug, initials, color] of team) {
   writeIfMissing(
     `team/${slug}.svg`,
